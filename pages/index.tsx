@@ -1,8 +1,9 @@
+import { HTag } from '../components';
 
 export default function Home(): JSX.Element {
 	return (
 		<div>
-			asdssss
+			<HTag tag='h1'>ASS</HTag>
 		</div>
 	);
 }
