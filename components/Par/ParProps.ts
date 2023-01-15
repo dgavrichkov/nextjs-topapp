@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
+import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
 
-export interface ParProps {
+export interface ParProps extends DetailedHTMLProps<HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement> {
 	children: ReactNode;
 	size?: 'sm' | 'md' | 'lg'
 }
