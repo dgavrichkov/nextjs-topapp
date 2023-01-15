@@ -1,4 +1,4 @@
-import { Button, HTag, Par } from '../components';
+import { Button, HTag, Par, Tag } from '../components';
 
 export default function Home(): JSX.Element {
 	return (
@@ -9,6 +9,11 @@ export default function Home(): JSX.Element {
 			<Par size="lg">paragraph lg</Par>
 			<Par size="md">paragraph md</Par>
 			<Par>paragraph sm</Par>
+			<Tag color='ghost' size='lg'>Tag 1</Tag>
+			<Tag color='green'>Tag 1</Tag>
+			<Tag color='red'>Tag 1</Tag>
+			<Tag color='grey'>Tag 1</Tag>
+			<Tag color='primary' href='https://sosibibu'>Tag 1</Tag>
 		</div>
 	);
 }
