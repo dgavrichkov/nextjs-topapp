@@ -5,18 +5,13 @@ import { Rating } from '../components';
 import { withLayout } from '../layouts';
 import { MenuItem } from '../interfaces/menu.interface';
 
-function Home({ menu }: HomeProps): JSX.Element {
+function Home({ menu, firstCategory }: HomeProps): JSX.Element {
 	const [rating, setRating] = useState(4);
 
 	return (
 		<>
 			Home Component
 			<Rating rating={rating} setRating={setRating} isEditable />
-			<ul>
-				{menu.map(m => (
-					<li key={m._id.secondCategory}>{m._id.secondCategory}</li>
-				))}
-			</ul>
 		</>
 	);
 }
