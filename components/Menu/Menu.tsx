@@ -26,8 +26,8 @@ export const Menu = (): JSX.Element => {
 					<div key={item.route}>
 						<a href={`/${item.route}`}>
 							<div 
-								className={cn(styles.firstLevel, {
-									[styles.firstLevelActive]: item.id === firstCategory,
+								className={cn(styles.menu__firstLevelItem, {
+									[styles.active]: item.id === firstCategory,
 								})}
 							>
 								<div>{item.icon}</div>
@@ -43,13 +43,13 @@ export const Menu = (): JSX.Element => {
 
 	const buildSecondLevel = (flMenuItem: FirstLevelMenuItem) => {
 		return (
-			<div className={styles.secondLevelWrapper}>
+			<div className={styles.menu__secondLevelWrapper}>
 				{menu.map(menuItem => (
 					<div key={menuItem._id.secondCategory}>
-						<div className={styles.secondLevel}>{menuItem._id.secondCategory}</div>
+						<div className={styles.menu__secondLevelItem}>{menuItem._id.secondCategory}</div>
 						<div 
-							className={cn(styles.secondLevelBlock, {
-								[styles.secondLevelBlockOpened]: menuItem.isOpened
+							className={cn(styles.menu__thirdLevelWrapper, {
+								[styles.opened]: menuItem.isOpened
 							})}
 						>
 							{buildThirdLevel(menuItem.pages, flMenuItem.route)}
@@ -66,7 +66,7 @@ export const Menu = (): JSX.Element => {
 				<a
 					key={page._id}
 					href={`/${route}/${page.alias}`}
-					className={cn(styles.thirdLevel, {
+					className={cn(styles.menu__thirdLevelItem, {
 						[styles.active]: false
 					})}
 				>{page.category}</a>
