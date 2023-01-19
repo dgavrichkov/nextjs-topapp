@@ -26,16 +26,15 @@ export const Menu = (): JSX.Element => {
 		return (
 			<>
 				{firstLevelMenu.map(item => (
-					<div key={item.route}>
-						<Link href={`/${item.route}`}>
-							<div
-								className={cn(styles.menu__firstLevelItem, {
-									[styles.active]: item.id === firstCategory,
-								})}
-							>
-								<div>{item.icon}</div>
-								<span>{item.name}</span>
-							</div>
+					<div key={item.route} className={styles.menu__firstLevelWrap}>
+						<Link
+							href={`/${item.route}`}
+							className={cn(styles.menu__firstLevelItem, {
+								[styles.active]: item.id === firstCategory,
+							})}
+						>
+							{item.icon}
+							<span>{item.name}</span>
 						</Link>
 						{item.id === firstCategory && buildSecondLevel(item)}
 					</div>
