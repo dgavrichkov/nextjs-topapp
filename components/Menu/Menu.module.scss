@@ -36,7 +36,10 @@
 }
 
 .menu__thirdLevelWrapper {
+	display: none;
+
 	&.opened {
+		display: block;
 		&:last-child {
 			margin-bottom: 20px;
 		}
