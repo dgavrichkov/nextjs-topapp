@@ -1,9 +1,15 @@
+.menu__firstLevelWrap {
+	margin-top: 20px;
+
+	&:first-child {
+		margin-top: 10px;
+	}
+}
 .menu__firstLevelItem {
 	display: grid;
 	grid-template-columns: 24px 1fr;
 	gap: 20px;
 	align-self: center;
-	margin-top: 20px;
 
 	font-weight: 500;
 	font-size: 18px;
@@ -36,7 +42,10 @@
 }
 
 .menu__thirdLevelWrapper {
+	display: none;
+
 	&.opened {
+		display: block;
 		&:last-child {
 			margin-bottom: 20px;
 		}
