@@ -1,4 +1,4 @@
-import { Advantages, HTag, Tag } from '../../components';
+import { Advantages, HTag, Par, Tag } from '../../components';
 import { TopPageComponentProps } from './TopPageComponentProps';
 import styles from './TopPageComponent.module.scss';
 import { Card } from '../../components/Card';
@@ -6,7 +6,7 @@ import { HhData } from '../../components/HhData';
 import { TopLevelCategory } from '../../interfaces/page.interface';
 
 export const TopPageComponent = ({ firstCategory, page, products }: TopPageComponentProps): JSX.Element => {
-	const { advantages } = page;
+	const { advantages, seoText, tags } = page;
 
 	return (
 		<div className={styles.wrapper}>
@@ -40,6 +40,19 @@ export const TopPageComponent = ({ firstCategory, page, products }: TopPageCompo
 					<Advantages advantages={advantages} />
 				</section>
 			) : null}
+			{seoText ? (
+				<section className={styles.toppage__seo}>
+					<Par>{seoText}</Par>
+				</section>
+			) : null}
+			<section className={styles.toppage__skills}>
+				<HTag tag='h2'>Получаемые навыки</HTag>
+				<div className={styles.toppage__skillsList}>
+					{tags.map(tag => (
+						<Tag key={tag} color='primary'>{tag}</Tag>
+					))}
+				</div>
+			</section>
 		</div>
 	);
 };
