@@ -1,4 +1,4 @@
-import { HTag, Tag } from '../../components';
+import { Advantages, HTag, Tag } from '../../components';
 import { TopPageComponentProps } from './TopPageComponentProps';
 import styles from './TopPageComponent.module.scss';
 import { Card } from '../../components/Card';
@@ -6,6 +6,8 @@ import { HhData } from '../../components/HhData';
 import { TopLevelCategory } from '../../interfaces/page.interface';
 
 export const TopPageComponent = ({ firstCategory, page, products }: TopPageComponentProps): JSX.Element => {
+	const { advantages } = page;
+
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.title}>
@@ -25,11 +27,19 @@ export const TopPageComponent = ({ firstCategory, page, products }: TopPageCompo
 					))
 				)}
 			</div>
-			<div className={styles.hhTitle}>
-				<HTag tag='h2'>Вакансии - {page.category}</HTag>
-				<Tag color='red' size='lg'>hh.ru</Tag>
-			</div>
-			{firstCategory == TopLevelCategory.Courses && page.hh && <HhData {...page.hh} />}
+			<section className={styles.toppage__hhru}>
+				<div className={styles.hhTitle}>
+					<HTag tag='h2'>Вакансии - {page.category}</HTag>
+					<Tag color='red' size='lg'>hh.ru</Tag>
+				</div>
+				{firstCategory == TopLevelCategory.Courses && page.hh && <HhData {...page.hh} />}
+			</section>
+			{advantages?.length ? (
+				<section className={styles.toppage__advantages}>
+					<HTag tag='h2'>Преимущества</HTag>
+					<Advantages advantages={advantages} />
+				</section>
+			) : null}
 		</div>
 	);
 };
