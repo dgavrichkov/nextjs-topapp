@@ -42,7 +42,7 @@ export const TopPageComponent = ({ firstCategory, page, products }: TopPageCompo
 			) : null}
 			{seoText ? (
 				<section className={styles.toppage__seo}>
-					<Par>{seoText}</Par>
+					<div dangerouslySetInnerHTML={{ __html: seoText }} />
 				</section>
 			) : null}
 			<section className={styles.toppage__skills}>
