@@ -7,8 +7,8 @@ import styles from './Sidebar.module.scss';
 export const Sidebar = ({ className, ...props }: SidebarProps): JSX.Element => {
 	return (
 		<div className={cn(className, styles.sidebar)} {...props}>
-			<Logo className={styles.sidebar__logo} />
-			<div className={styles.sidebar__search}>search bar</div>
+			<Logo />
+			<div>search bar</div>
 			<Menu />
 		</div>
 	);

@@ -45,7 +45,7 @@ export const TopPageComponent = ({ firstCategory, page, products }: TopPageCompo
 					<div dangerouslySetInnerHTML={{ __html: seoText }} />
 				</section>
 			) : null}
-			<section className={styles.toppage__skills}>
+			<section>
 				<HTag tag='h2'>Получаемые навыки</HTag>
 				<div className={styles.toppage__skillsList}>
 					{tags.map(tag => (
