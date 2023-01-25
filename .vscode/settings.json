@@ -1,5 +1,6 @@
 {
 	"editor.formatOnSave": false,
 	"prettier.embeddedLanguageFormatting": "auto",
-	"prettier.enable": false
+	"prettier.enable": false,
+	"typescript.tsdk": "node_modules\\typescript\\lib"
 }

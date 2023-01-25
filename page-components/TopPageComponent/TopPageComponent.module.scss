@@ -1,0 +1,60 @@
+.wrapper {
+	margin-top: 40px;
+}
+.title {
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	align-items: baseline;
+	justify-items: start;
+	gap: 20px;
+}
+
+.hhTitle {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	justify-items: start;
+	align-items: baseline;
+	gap: 20px;
+}
+
+.toppage__hhru {
+	margin-bottom: 50px;
+}
+
+.toppage__advantages {
+	margin-bottom: 30px;
+}
+
+.toppage__seo {
+	margin-bottom: 30px;
+	padding: 0 15px;
+
+	h1 {
+		font-weight: 500;
+		font-size: 26px;
+		line-height: 35px;
+		margin: 0;
+	}
+
+	h2 {
+		font-weight: 500;
+		font-size: 22px;
+		line-height: 30px;
+		margin-top: 0;
+		margin-bottom: 25px;
+	}
+
+	h3 {
+		font-weight: 600;
+		font-size: 20px;
+		line-height: 27px;
+		margin: 0;
+	}
+}
+
+.toppage__skillsList {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px 5px;
+}

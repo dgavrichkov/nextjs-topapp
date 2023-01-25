@@ -17,6 +17,7 @@
 
 .content {
 	grid-area: contentblock;
+	margin-bottom: 50px;
 }
 
 .sidebar {
@@ -34,6 +35,10 @@
 			"header"
 			"contentblock"
 			"footer";
+	}
+
+	.content {
+		padding: 0 15px;
 	}
 
 	.sidebar {
