@@ -6,3 +6,4 @@ export * from './Rating';
 export * from './Menu';
 export * from './Advantages';
 export * from './Sort';
+export * from './Input';
