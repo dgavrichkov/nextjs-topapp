@@ -6,26 +6,54 @@
 
 .divider {
 	grid-column: start / end;
+	margin: 20px 0;
 }
 
 .logo {
 	grid-column: start / logoEnd;
 	grid-row: 1 / span 2;
+
+	img {
+		border-radius: 5px;
+	}
 }
 
 .title {
 	grid-column: titleStart / middle;
+	align-self: end;
+
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 27px;
+}
+
+.value {
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 27px;
+
+	span {
+		font-size: 14px;
+		line-height: 19px;
+	}
 }
 
 .price {
+	align-self: end;
 	grid-column: priceStart / priceEnd;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px;
+	align-items: center;
 }
 
 .credit {
+	align-self: end;
 	grid-column: creditStart / creditEnd;
 }
 
 .rating {
+	align-self: end;
 	grid-column: rateStart / end;
 }
 
@@ -33,39 +61,112 @@
 	grid-column: titleStart / middle;
 }
 
+.subtitle {
+	font-weight: 300;
+	font-size: 14px;
+	line-height: 19px;
+}
+
 .priceTitle {
 	grid-column: priceStart / priceEnd;
+	align-self: start;
 }
 
 .creditTitle {
 	grid-column: creditStart / creditEnd;
+	align-self: start;
 }
 
 .reviewsTitle {
 	grid-column: rateStart / end;
+	align-self: start;
 }
 
 .description {
 	grid-column: start / end;
+
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 22px;
+
+	margin-bottom: 14px;
 }
 
 .features {
 	grid-column: start / middle;
+
+	dl {
+		margin: 0;
+		margin-bottom: 20px;
+		padding-right: 60px;
+	}
+
+	dl > div {
+		display: grid;
+		grid-template-columns: auto 1fr auto;
+		align-items: center;
+		gap: 10px;
+	}
+
+	dt {
+		font-weight: 700;
+		font-size: 16px;
+		line-height: 32px;
+		grid-column: 1 / span 1;
+	}
+
+	span {
+		width: 100%;
+		height: 1px;
+		border-bottom: 1px dashed #C4C4C4;
+	}
+
+	dd {
+		margin: 0;
+		font-weight: 500;
+		font-size: 16px;
+		line-height: 22px;
+		grid-column: -1 / span 1;
+	}
 }
 
 .advBlock {
 	grid-column: middle / end;
 
+	&__advantages,
+	&__disadvantages {
+		padding-left: 15px;
+		border-left: 2px solid;
+		h4 {
+			font-weight: 700;
+			font-size: 16px;
+			line-height: 22px;
+			margin: 0 0 5px 0;
+		}
+		div {
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 22px;
+		}
+	}
+
 	&__advantages {
-		display: block;
+		border-color: var(--green);
+		margin-bottom: 20px;
 	}
 
 	&__disadvantages {
-		display: block;
+		border-color: var(--red);
 	}
 }
 
 .actions {
 	grid-column: start / end;
 	display: block;
+	display: flex;
+	gap: 20px;
+}
+
+.category {
+	margin-top: 5px;
 }
