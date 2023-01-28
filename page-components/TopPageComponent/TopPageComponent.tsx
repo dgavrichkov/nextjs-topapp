@@ -1,4 +1,4 @@
-import { Advantages, HTag, Par, Sort, Tag } from '../../components';
+import { Advantages, HTag, Product, Sort, Tag } from '../../components';
 import { TopPageComponentProps } from './TopPageComponentProps';
 import styles from './TopPageComponent.module.scss';
 import { Card } from '../../components/Card';
@@ -25,13 +25,8 @@ export const TopPageComponent = ({ firstCategory, page, products }: TopPageCompo
 			</div>
 			<div>
 				{sortedProducts && (
-					sortedProducts.map(p => (
-						<div key={p._id}>
-							<div>{p._id}</div>
-							<div>{p.title}</div>
-							<div>{p.description}</div>
-							<hr />
-						</div>
+					sortedProducts.map(product => (
+						<Card key={product._id}><Product product={product} /></Card>
 					))
 				)}
 			</div>
