@@ -71,7 +71,7 @@ export const Product = ({ product, className }: ProductProps): JSX.Element => {
 					<div>{product.disadvantages || 'Не обнаружено'}</div>
 				</div>
 			</div>
-			<Divider className={styles.divider}/>
+			<Divider className={cn(styles.divider, styles.hr2)}/>
 			<div className={styles.actions}>
 				<Button appearance='primary'>Узнать подробнее</Button>
 				<Button appearance='ghost' arrow='right'>Читать отзывы</Button>

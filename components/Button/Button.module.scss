@@ -7,7 +7,6 @@
 	border: none;
 	border-radius: 5px;
 	font-size: 14px;
-	line-height: 1px;
 	transition: all 0.2s;
 }
 
@@ -25,7 +24,7 @@
 
 .ghost {
 	color: var(--black);
-	background-color: none;
+	background: none;
 	border: 1px solid var(--gray-light);
 	&:hover {
 		color: var(--white);
