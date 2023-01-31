@@ -6,3 +6,8 @@ export * from './Rating';
 export * from './Menu';
 export * from './Advantages';
 export * from './Sort';
+export * from './Input';
+export * from './Textarea';
+export * from './Search';
+export * from './Product';
+export * from './Divider';

@@ -24,7 +24,7 @@
 
 .ghost {
 	color: var(--black);
-	background-color: none;
+	background: none;
 	border: 1px solid var(--gray-light);
 	&:hover {
 		color: var(--white);
