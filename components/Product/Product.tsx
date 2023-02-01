@@ -10,6 +10,7 @@ import { declanationOfNum, toPriceRu } from '../../helpers/helpers';
 import { Divider } from '../Divider';
 import { useState } from 'react';
 import { Review } from '../Review';
+import { Par } from '../Par';
 
 
 export const Product = ({ product, className }: ProductProps): JSX.Element => {
@@ -90,9 +91,15 @@ export const Product = ({ product, className }: ProductProps): JSX.Element => {
 				[styles.opened]: isReviewOpened,
 				[styles.closed]: !isReviewOpened,
 			})}>
-				{product.reviews.map(review => (
-					<Review key={review._id} review={review} />
-				))}
+				{product.reviews.length ? (
+					<>
+						{
+							product.reviews.map(review => (
+								<Review key={review._id} review={review} />
+							))
+						}
+					</>
+				): <Par>Отзывов пока нет</Par>}
 			</Card>
 		</div>
 		
