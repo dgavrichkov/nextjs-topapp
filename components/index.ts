@@ -12,3 +12,4 @@ export * from './Search';
 export * from './Product';
 export * from './Divider';
 export * from './Review';
+export * from './ReviewForm';

@@ -1,0 +1,97 @@
+.form {
+	display: grid;
+	grid-template-columns: 218px 218px 1fr;
+	gap: 20px 30px;
+	grid-template-areas: 
+		'nm tt rate'
+		'txt txt txt'
+		'sub sub sub';
+	@media (max-width: 1100px) {
+		grid-template-columns: 1fr 1fr;
+		grid-template-areas: 
+			'rate rate'
+			'nm tt'
+			'txt txt'
+			'sub sub';
+	}
+
+	@media (max-width: 480px) {
+		grid-template-columns: 1fr;
+		grid-template-areas: 
+			'rate'
+			'nm'
+			'tt'
+			'txt'
+			'sub';
+	}
+
+	input {
+		width: 100%;
+	}
+
+	&__name {
+		grid-area: nm;
+
+		@media (max-width: 1100px) {
+
+		}
+	}
+
+	&__title {
+		grid-area: tt;
+	}
+
+	&__text {
+		grid-area: txt;
+	}
+
+	&__rate {
+		grid-area: rate;
+		justify-self: end;
+
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	&__sub {
+		grid-area: sub;
+		display: flex;
+		align-items: center;
+		gap: 15px;
+
+		font-size: 14px;
+		line-height: 24px;
+
+		@media (max-width: 480px) {
+			display: grid;
+		}
+	}
+}
+
+.success {
+	padding: 20px;
+	background: var(--green-light);
+	border-radius: 5px;
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: 15px;
+	
+	&__title {
+		font-size: 22px;
+		line-height: 1.5;
+	}
+	&__text {
+		font-size: 14px;
+		line-height: 24px;
+		grid-row: 2;
+	}
+	&__button {
+		display: flex;
+		cursor: pointer;
+		background: var(--white);
+		border-radius: 4px;
+		border: none;
+		padding: 10px;
+	}
+}

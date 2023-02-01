@@ -11,6 +11,7 @@ import { Divider } from '../Divider';
 import { useState } from 'react';
 import { Review } from '../Review';
 import { Par } from '../Par';
+import { ReviewForm } from '../ReviewForm';
 
 
 export const Product = ({ product, className }: ProductProps): JSX.Element => {
@@ -100,8 +101,9 @@ export const Product = ({ product, className }: ProductProps): JSX.Element => {
 						}
 					</>
 				): <Par>Отзывов пока нет</Par>}
+				<ReviewForm productId={product._id} />
 			</Card>
-		</div>
+		</div>	
 		
 	);
 };
