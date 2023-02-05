@@ -1,3 +1,4 @@
+import { useRef, useState } from 'react';
 import cn from 'classnames';
 import Image from 'next/image';
 import { ProductProps } from './ProductProps';
@@ -8,19 +9,27 @@ import { Button } from '../Button';
 import { Card } from '../Card';
 import { declanationOfNum, toPriceRu } from '../../helpers/helpers';
 import { Divider } from '../Divider';
-import { useState } from 'react';
 import { Review } from '../Review';
 import { Par } from '../Par';
 import { ReviewForm } from '../ReviewForm';
 
 
-export const Product = ({ product, className }: ProductProps): JSX.Element => {
+export const Product = ({ product, className, ...restProps }: ProductProps): JSX.Element => {
 	const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
+	const reviewRef = useRef<HTMLDivElement>(null);
+
+	const scrollToReview = () => {
+		setIsReviewOpened(true);
+		reviewRef.current?.scrollIntoView({
+			behavior: 'smooth',
+			block: 'start'
+		});
+	};
 
 	return (
-		<div>
+		<div className={cn(className)} {...restProps}>
 			<Card
-				className={cn(styles.product, className)}
+				className={cn(styles.product)}
 			>
 				<div className={styles.logo}>
 					<Image
@@ -49,7 +58,7 @@ export const Product = ({ product, className }: ProductProps): JSX.Element => {
 				<div className={cn(styles.priceTitle, styles.subtitle)}>цена</div>
 				<div className={cn(styles.creditTitle, styles.subtitle)}>в кредит</div>
 				<div className={cn(styles.reviewsTitle, styles.subtitle)}>
-					{`${product.reviewCount} ${declanationOfNum(product.reviewCount, ['отзыв', 'отзывa', 'отзывов'])}`}
+					<a href="#ref" onClick={scrollToReview}>{`${product.reviewCount} ${declanationOfNum(product.reviewCount, ['отзыв', 'отзывa', 'отзывов'])}`}</a>
 				</div>
 				<Divider className={styles.divider} />
 				<div className={styles.description}>{product.description}</div>
@@ -88,10 +97,14 @@ export const Product = ({ product, className }: ProductProps): JSX.Element => {
 					>Читать отзывы</Button>
 				</div>
 			</Card>
-			<Card color='blue' className={cn(styles.reviewsCard, {
-				[styles.opened]: isReviewOpened,
-				[styles.closed]: !isReviewOpened,
-			})}>
+			<Card
+				color='blue'
+				className={cn(styles.reviewsCard, {
+					[styles.opened]: isReviewOpened,
+					[styles.closed]: !isReviewOpened,
+				})}
+				ref={reviewRef}
+			>
 				{product.reviews.length ? (
 					<>
 						{
