@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import cn from 'classnames';
 import { useForm, Controller } from 'react-hook-form';
 import { ReviewFormProps } from './ReviewFormProps';
@@ -7,12 +8,28 @@ import { Rating } from '../Rating';
 import { Textarea } from '../Textarea';
 import { Button } from '../Button';
 import IconClose from './close.svg';
-import { IReviewForm } from './ReviewForm.interface';
+import { IReviewForm, IReviewSendResponse } from './ReviewForm.interface';
+import axios from 'axios';
+import { API } from '../../helpers/api';
 
 export const ReviewForm = ({ productId, className, ...restProps }: ReviewFormProps): JSX.Element => {
-	const { register, control, handleSubmit, formState: { errors } } = useForm<IReviewForm>();
-	const onSubmit = (data: IReviewForm) => {
-		console.log(data);
+	const { register, control, handleSubmit, formState: { errors }, reset } = useForm<IReviewForm>();
+	const [isSuccessView, setIsSuccessView] = useState(false);
+	const [errorText, setErrorText] = useState('');
+
+	const onSubmit = async (formdata: IReviewForm) => {
+		try {
+			const { data } = await axios.post<IReviewSendResponse>(API.review.createDemo, { ...formdata, productId });
+			console.log(data);
+			if (data.message) {
+				setIsSuccessView(true);
+				reset();
+			} else {
+				setErrorText('Что-то пошло не так');
+			}
+		} catch(err) {
+			console.log(err);
+		}
 	};
 
 	return (
@@ -65,11 +82,21 @@ export const ReviewForm = ({ productId, className, ...restProps }: ReviewFormPro
 					<span>* Перед публикацией отзыв пройдет предварительную модерацию и проверку</span>
 				</div>
 			</div>
-			<div className={styles.success}>
-				<div className={styles.success__title}>Ваш отзыв отправлен!</div>
-				<div className={styles.success__text}>Спасибо, ваш отзыв будет опубликован после проверки</div>
-				<button className={styles.success__button} type='button'><IconClose /></button>
-			</div>
+			{isSuccessView ? (
+				<div className={cn(styles.message, styles.success)}>
+					<div className={styles.message__title}>Ваш отзыв отправлен!</div>
+					<div className={styles.message__text}>Спасибо, ваш отзыв будет опубликован после проверки</div>
+					<button className={styles.message__button} type='button' onClick={() => setIsSuccessView(false)}><IconClose /></button>
+				</div>
+			) : null}
+			{errorText ? (
+				<div className={cn(styles.message, styles.error)}>
+					<div className={styles.message__title}>отзыв не отправлен</div>
+					<div className={styles.message__text}>{errorText}<br />Что-то пошло не так, попробуйте обновить страницу</div>
+					<button className={styles.message__button} type='button' onClick={() => setErrorText('')}><IconClose /></button>
+				</div>
+			) : null}
+			
 		</form>
 		
 	);
