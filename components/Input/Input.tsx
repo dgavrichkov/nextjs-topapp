@@ -1,13 +1,20 @@
+import { ForwardedRef, forwardRef } from 'react';
 import cn from 'classnames';
 import { InputProps } from './InputProps';
 import styles from './Input.module.scss';
 
 
-export const Input = ({ className, ...restProps }: InputProps): JSX.Element => {
+export const Input = forwardRef(({ error, className, ...restProps }: InputProps, ref: ForwardedRef<HTMLInputElement>): JSX.Element => {
 	return (
-		<input
-			className={cn(className, styles.input)}
-			{...restProps}
-		/>
+		<div className={cn(className, styles.inputWrapper)}>
+			<input
+				ref={ref}
+				className={cn(className, styles.input, {
+					[styles.error]: error
+				})}
+				{...restProps}
+			/>
+			{error ? (<div className = {styles.errorMessage}>{error.message}</div>) : null}
+		</div>
 	);
-};
+});
