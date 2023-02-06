@@ -29,7 +29,7 @@ export const TopPageComponent = ({ firstCategory, page, products }: TopPageCompo
 			<section className={styles.toppage__products}>
 				{sortedProducts && (
 					sortedProducts.map(product => (
-						<Product key={product._id} product={product} />
+						<Product key={product._id} product={product} layout />
 					))
 				)}
 			</section>
