@@ -19,6 +19,21 @@ export const Product = motion(forwardRef(({ product, className, ...restProps }: 
 	const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
 	const reviewRef = useRef<HTMLDivElement>(null);
 
+	const reviewVariants = {
+		visible: {
+			height: 'auto',
+			opacity: 1,
+			transition: {
+				when: 'beforeChildren',
+				staggerChildren: 0.1,
+			}
+		},
+		hidden: {
+			opacity: 0,
+			height: 0,
+		},
+	};
+
 	const scrollToReview = () => {
 		setIsReviewOpened(true);
 		reviewRef.current?.scrollIntoView({
@@ -28,7 +43,7 @@ export const Product = motion(forwardRef(({ product, className, ...restProps }: 
 	};
 
 	return (
-		<div ref={ref} className={cn(className)} {...restProps}>
+		<div ref={ref} className={cn(className, styles.productWrapper)} {...restProps}>
 			<Card
 				className={cn(styles.product)}
 			>
@@ -98,25 +113,29 @@ export const Product = motion(forwardRef(({ product, className, ...restProps }: 
 					>Читать отзывы</Button>
 				</div>
 			</Card>
-			<Card
-				color='blue'
-				className={cn(styles.reviewsCard, {
-					[styles.opened]: isReviewOpened,
-					[styles.closed]: !isReviewOpened,
-				})}
-				ref={reviewRef}
+			<motion.div
+				variants={reviewVariants}
+				initial={isReviewOpened ? 'visible' : 'hidden'}
+				animate={isReviewOpened ? 'visible' : 'hidden'}
+				className={styles.reviewsCardWrapper}
 			>
-				{product.reviews.length ? (
-					<>
-						{
-							product.reviews.map(review => (
-								<Review key={review._id} review={review} />
-							))
-						}
-					</>
-				): <Par>Отзывов пока нет</Par>}
-				<ReviewForm productId={product._id} />
-			</Card>
+				<Card
+					color='blue'
+					className={cn(styles.reviewsCard)}
+					ref={reviewRef}
+				>
+					{product.reviews.length ? (
+						<>
+							{
+								product.reviews.map(review => (
+									<Review key={review._id} review={review} />
+								))
+							}
+						</>
+					): <Par>Отзывов пока нет</Par>}
+					<ReviewForm productId={product._id} />
+				</Card>
+			</motion.div>
 		</div>	
 		
 	);
