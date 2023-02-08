@@ -1,9 +1,9 @@
 import { motion, useAnimation } from 'framer-motion';
 import cn from 'classnames';
 import styles from './Up.module.scss';
-import IconChevron from './chevron.svg';
 import { useScrollY } from '../../hooks/useScrollY';
 import { useEffect } from 'react';
+import { ButtonIcon } from '../ButtonIcon';
 
 export const Up = (): JSX.Element => {
 	const control = useAnimation();
@@ -21,14 +21,17 @@ export const Up = (): JSX.Element => {
 	};
 
 	return (
-		<motion.button
-			type="button"
+		<motion.div
 			className={cn(styles.up)}
-			onClick={scrollToTop}
 			animate={control}
 			initial={{opacity: 0}}
 		>
-			<IconChevron />
-		</motion.button>
+			<ButtonIcon
+				onClick={scrollToTop}
+				type="button"
+				appearance='primary'
+				icon='up'
+			/>
+		</motion.div>
 	);
 };

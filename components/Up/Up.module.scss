@@ -1,19 +1,5 @@
 .up {
-	width: 40px;
-	height: 40px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
-	border: none;
-	border-radius: 10px;
-	background: var(--primary);
-	cursor: pointer;
 	position: fixed;
 	bottom: 30px;
 	right: 30px;
-
-	&:hover {
-		background: var(--primary-hover);
-	}
 }
