@@ -20,7 +20,7 @@ export const TopPageComponent = ({ firstCategory, page, products }: TopPageCompo
 	};
 
 	return (
-		<div className={styles.wrapper}>
+		<section>
 			<div className={styles.title}>
 				<HTag tag='h1'>{page.title}</HTag>
 				{products && <Tag color='grey' size='lg'>{products.length}</Tag>}
@@ -59,6 +59,6 @@ export const TopPageComponent = ({ firstCategory, page, products }: TopPageCompo
 					))}
 				</div>
 			</section>
-		</div>
+		</section>
 	);
 };
