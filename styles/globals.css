@@ -33,13 +33,15 @@ a {
 	--body: #f5f6f8;
 	--black: #3B434E;
 	--gray-light: #EBEBEB;
-	--gray-dark: #787D85;
+	--gray: #A4A4A4;
+	--gray-dark: #6C7077;
 	--gray-middle: #A4A4A4;
 	--white: white;
-	--primary: #7653FC;
+	--primary: #7351F5;
 	--primary-hover: #6344DF;
+	--red-light: #FEA291;
 	--red: #FC836D;
-	--green: #1DC37E;
+	--green: #007B48;
 	--green-light: #C8F8E4;
-	--font-family: "Noto Sans", sans-serif;
+	--font-family: "Noto Sans KR", sans-serif;
 }
