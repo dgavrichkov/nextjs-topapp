@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { KeyboardEvent, useContext } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
@@ -67,6 +67,13 @@ export const Menu = (): JSX.Element => {
 		);
 	};
 
+	const openSecondLevelKey = (key: KeyboardEvent, secondCategory: string) => {
+		if(key.code === "Space" || key.code === "Enter") {
+			key.preventDefault();
+			openSecondLevel(secondCategory);
+		}
+	};
+
 	const buildSecondLevel = (flMenuItem: FirstLevelMenuItem) => {
 		return (
 			<div className={styles.menu__secondLevelWrapper}>
@@ -77,8 +84,10 @@ export const Menu = (): JSX.Element => {
 					return (
 						<div key={menuItem._id.secondCategory}>
 							<div
+								tabIndex={0}
 								className={styles.menu__secondLevelItem}
 								onClick={() => openSecondLevel(menuItem._id.secondCategory)}
+								onKeyDown={(key: KeyboardEvent) => openSecondLevelKey(key, menuItem._id.secondCategory)}
 							>
 								{menuItem._id.secondCategory}
 							</div>
@@ -89,7 +98,7 @@ export const Menu = (): JSX.Element => {
 								animate={menuItem.isOpened ? 'visible' : 'hidden'}
 								className={cn(styles.menu__thirdLevelWrapper)}
 							>
-								{buildThirdLevel(menuItem.pages, flMenuItem.route)}
+								{buildThirdLevel(menuItem.pages, flMenuItem.route, menuItem.isOpened ?? false)}
 							</motion.div>
 						</div>
 					);
@@ -98,19 +107,21 @@ export const Menu = (): JSX.Element => {
 		);
 	};
 
-	const buildThirdLevel = (pages: PageItem[], route: string) => {
+	const buildThirdLevel = (pages: PageItem[], route: string, isOpened: boolean) => {
 		return (
 			pages.map(page => (
 				<motion.div
 					key={page._id}
 					variants={childrenVariants}
 				>
-					<Link href={`/${route}/${page.alias}`}>
-						<div
-							className={cn(styles.menu__thirdLevelItem, {
-								[styles.active]: `/${route}/${page.alias}` === router.asPath
-							})}
-						>{page.category}</div>
+					<Link
+						tabIndex={isOpened ? 0 : -1}
+						href={`/${route}/${page.alias}`}
+						className={cn(styles.menu__thirdLevelItem, {
+							[styles.active]: `/${route}/${page.alias}` === router.asPath
+						})}
+					>
+						{page.category}
 					</Link>
 				</motion.div>
 				
