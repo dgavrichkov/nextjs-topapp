@@ -11,8 +11,9 @@ import IconClose from './close.svg';
 import { IReviewForm, IReviewSendResponse } from './ReviewForm.interface';
 import axios from 'axios';
 import { API } from '../../helpers/api';
+import { HTag } from '../Htag';
 
-export const ReviewForm = ({ productId, className, ...restProps }: ReviewFormProps): JSX.Element => {
+export const ReviewForm = ({ productId, isOpened, className, ...restProps }: ReviewFormProps): JSX.Element => {
 	const { register, control, handleSubmit, formState: { errors }, reset } = useForm<IReviewForm>();
 	const [isSuccessView, setIsSuccessView] = useState(false);
 	const [errorText, setErrorText] = useState('');
@@ -34,6 +35,7 @@ export const ReviewForm = ({ productId, className, ...restProps }: ReviewFormPro
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
+			<HTag tag='h2'>Добавить отзыв</HTag>
 			<div
 				className={cn(styles.form, className)}
 				{...restProps}
@@ -43,12 +45,14 @@ export const ReviewForm = ({ productId, className, ...restProps }: ReviewFormPro
 					className={styles.form__name}
 					placeholder='Имя'
 					error={errors.name}
+					tabIndex={isOpened ? 0 : -1}
 				/>
 				<Input 
 					{...register('title', { required: { value: true, message: 'Заполните заголовок' }})}
 					className={styles.form__title}
 					placeholder='Заголовок отзыва'
 					error={errors.title}
+					tabIndex={isOpened ? 0 : -1}
 				/>
 				<div className={styles.form__rate}>
 					<span>Оценка:</span>
@@ -65,6 +69,7 @@ export const ReviewForm = ({ productId, className, ...restProps }: ReviewFormPro
 								ref={field.ref}
 								setRating={field.onChange}
 								error={errors.rating}
+								tabIndex={isOpened ? 0 : -1}
 							/>
 						)}
 					/>
@@ -74,9 +79,10 @@ export const ReviewForm = ({ productId, className, ...restProps }: ReviewFormPro
 					className={styles.form__text}
 					placeholder='Текст отзыва'
 					error={errors.description}
+					tabIndex={isOpened ? 0 : -1}
 				/>
 				<div className={styles.form__sub}>
-					<Button appearance='primary' onClick={() => null}>
+					<Button appearance='primary' onClick={() => null} tabIndex={isOpened ? 0 : -1}>
 						Отправить
 					</Button>
 					<span>* Перед публикацией отзыв пройдет предварительную модерацию и проверку</span>

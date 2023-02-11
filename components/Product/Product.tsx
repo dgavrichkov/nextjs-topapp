@@ -40,6 +40,7 @@ export const Product = motion(forwardRef(({ product, className, ...restProps }: 
 			behavior: 'smooth',
 			block: 'start'
 		});
+		reviewRef.current?.focus();
 	};
 
 	return (
@@ -123,6 +124,7 @@ export const Product = motion(forwardRef(({ product, className, ...restProps }: 
 					color='blue'
 					className={cn(styles.reviewsCard)}
 					ref={reviewRef}
+					tabIndex={isReviewOpened ? 0 : -1}
 				>
 					{product.reviews.length ? (
 						<>
@@ -133,7 +135,7 @@ export const Product = motion(forwardRef(({ product, className, ...restProps }: 
 							}
 						</>
 					): <Par>Отзывов пока нет</Par>}
-					<ReviewForm productId={product._id} />
+					<ReviewForm productId={product._id} isOpened={isReviewOpened} />
 				</Card>
 			</motion.div>
 		</div>	
