@@ -58,13 +58,21 @@ export const Product = motion(forwardRef(({ product, className, ...restProps }: 
 				</div>
 				<div className={styles.title}>{product.title}</div>
 				<div className={cn(styles.price, styles.value)}>
-					{toPriceRu(product.price)}
-					{product.oldPrice ? <Tag color='green'>{toPriceRu(product.price - product.oldPrice)}</Tag> : null}
+					<span>
+						<span className='visually-hidden'>цена</span>{toPriceRu(product.price)}
+					</span>
+					{product.oldPrice ?
+						<Tag color='green'>
+							<span className='visually-hidden'>скидка</span>{toPriceRu(product.price - product.oldPrice)}
+						</Tag> :
+						null
+					}
 				</div>
 				<div className={cn(styles.credit, styles.value)}>
-					{toPriceRu(product.credit)}<span>/мес</span>
+					<span><span className='visually-hidden'>кредит</span>{toPriceRu(product.credit)}<span className={styles.valueSub}>/мес</span></span>
 				</div>
 				<div className={styles.rating}>
+					<span className='visually-hidden'>{'рейтинг ' + (product.reviewAvg ?? product.initialRating)}</span>
 					<Rating rating={product.reviewAvg ?? product.initialRating} />
 				</div>
 				<div className={styles.tags}>
@@ -72,8 +80,8 @@ export const Product = motion(forwardRef(({ product, className, ...restProps }: 
 						<Tag key={category} className={styles.category} color='ghost'>{category}</Tag>
 					))}
 				</div>
-				<div className={cn(styles.priceTitle, styles.subtitle)}>цена</div>
-				<div className={cn(styles.creditTitle, styles.subtitle)}>в кредит</div>
+				<div className={cn(styles.priceTitle, styles.subtitle)} aria-hidden={true}>цена</div>
+				<div className={cn(styles.creditTitle, styles.subtitle)} aria-hidden={true}>в кредит</div>
 				<div className={cn(styles.reviewsTitle, styles.subtitle)}>
 					<a href="#ref" onClick={scrollToReview}>{`${product.reviewCount} ${declanationOfNum(product.reviewCount, ['отзыв', 'отзывa', 'отзывов'])}`}</a>
 				</div>
