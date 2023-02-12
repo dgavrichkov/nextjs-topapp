@@ -22,8 +22,8 @@ export const TopPageComponent = ({ firstCategory, page, products }: TopPageCompo
 	};
 
 	return (
-		<section>
-			<div className={styles.title}>
+		<div className={styles.toppage}>
+			<div className={styles.toppage__title}>
 				<HTag tag='h1'>{page.title}</HTag>
 				{products && <Tag color='grey' size='lg' aria-label={products.length + 'элементов'}>{products.length}</Tag>}
 				<Sort sort={sort} setSort={setSort}/>
@@ -36,7 +36,7 @@ export const TopPageComponent = ({ firstCategory, page, products }: TopPageCompo
 				)}
 			</section>
 			<section className={styles.toppage__hhru}>
-				<div className={styles.hhTitle}>
+				<div className={styles.toppage__hhruTitle}>
 					<HTag tag='h2'>Вакансии - {page.category}</HTag>
 					<Tag color='red' size='lg'>hh.ru</Tag>
 				</div>
@@ -61,6 +61,6 @@ export const TopPageComponent = ({ firstCategory, page, products }: TopPageCompo
 					))}
 				</div>
 			</section>
-		</section>
+		</div>
 	);
 };
