@@ -8,7 +8,6 @@ import { API } from '../helpers/api';
 
 function Home({ menu, firstCategory }: HomeProps): JSX.Element {
 	const [rating, setRating] = useState(4);
-	console.log(menu, firstCategory);
 
 	return (
 		<>
