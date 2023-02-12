@@ -14,7 +14,7 @@ export const Input = forwardRef(({ error, className, ...restProps }: InputProps,
 				})}
 				{...restProps}
 			/>
-			{error ? (<div className = {styles.errorMessage}>{error.message}</div>) : null}
+			{error ? (<div role="alert" className = {styles.errorMessage}>{error.message}</div>) : null}
 		</div>
 	);
 });

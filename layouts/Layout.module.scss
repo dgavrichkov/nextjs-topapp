@@ -47,3 +47,18 @@
 		grid-template-columns: 1fr;
 	}
 }
+
+.skipLink {
+	display: block;
+	position: fixed;
+	left: 0;
+	top: 0;
+	overflow: hidden;
+	height: 0;
+	background-color: var(--primary);
+	color: var(--white);
+
+	&__displayed {
+		height: auto;
+	}
+}
