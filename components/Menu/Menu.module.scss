@@ -1,3 +1,8 @@
+.menu {
+	list-style: none;
+	padding: 0;
+}
+
 .menu__firstLevelWrap {
 	margin-top: 20px;
 
@@ -29,6 +34,8 @@
 	margin-left: 12px;
 	padding-left: 32px;
 	border-left: 1px solid #DFDFDF;
+
+	list-style: none;
 }
 
 .menu__secondLevelItem {
@@ -38,10 +45,16 @@
 	color: var(--gray-dark);
 	font-weight: 300;
 	font-size: 12px;
+
+	background: none;
+	border: none;
+	padding: 0;
 }
 
 .menu__thirdLevelWrapper {
 	overflow: hidden;
+	list-style: none;
+	padding: 0;
 }
 
 .menu__thirdLevelItem {

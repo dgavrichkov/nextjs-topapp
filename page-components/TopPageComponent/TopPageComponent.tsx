@@ -26,10 +26,10 @@ export const TopPageComponent = ({ firstCategory, page, products }: TopPageCompo
 				{products && <Tag color='grey' size='lg' aria-label={products.length + 'элементов'}>{products.length}</Tag>}
 				<Sort sort={sort} setSort={setSort}/>
 			</div>
-			<section className={styles.toppage__products}>
+			<section className={styles.toppage__products} role="list">
 				{sortedProducts && (
 					sortedProducts.map(product => (
-						<Product key={product._id} product={product} layout />
+						<Product key={product._id} product={product} layout role="listitem" />
 					))
 				)}
 			</section>
