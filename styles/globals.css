@@ -5,6 +5,7 @@ body {
 
 	color: var(--black);
 	background: var(--body);
+
 	font-family: "Noto Sans", sans-serif;
 }
 
@@ -30,14 +31,16 @@ a {
 }
 
 .visually-hidden {
+	position: absolute;
+
+	overflow: hidden;
+
 	width: 0;
 	height: 0;
-	overflow: hidden;
-	position: absolute;
 }
 
 :root {
-	--body: #f5f6f8;
+	--body: #F5F6F8;
 	--black: #3B434E;
 	--gray-light: #EBEBEB;
 	--gray: #A4A4A4;
