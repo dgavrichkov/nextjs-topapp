@@ -14,7 +14,7 @@ import { API } from '../../helpers/api';
 import { HTag } from '../Htag';
 
 export const ReviewForm = ({ productId, isOpened, className, ...restProps }: ReviewFormProps): JSX.Element => {
-	const { register, control, handleSubmit, formState: { errors }, reset } = useForm<IReviewForm>();
+	const { register, control, handleSubmit, formState: { errors }, reset, clearErrors } = useForm<IReviewForm>();
 	const [isSuccessView, setIsSuccessView] = useState(false);
 	const [errorText, setErrorText] = useState('');
 
@@ -46,6 +46,7 @@ export const ReviewForm = ({ productId, isOpened, className, ...restProps }: Rev
 					placeholder='Имя'
 					error={errors.name}
 					tabIndex={isOpened ? 0 : -1}
+					aria-invalid={errors.name ? true : false}
 				/>
 				<Input 
 					{...register('title', { required: { value: true, message: 'Заполните заголовок' }})}
@@ -53,6 +54,7 @@ export const ReviewForm = ({ productId, isOpened, className, ...restProps }: Rev
 					placeholder='Заголовок отзыва'
 					error={errors.title}
 					tabIndex={isOpened ? 0 : -1}
+					aria-invalid={errors.title ? true : false}
 				/>
 				<div className={styles.form__rate}>
 					<span>Оценка:</span>
@@ -80,26 +82,41 @@ export const ReviewForm = ({ productId, isOpened, className, ...restProps }: Rev
 					placeholder='Текст отзыва'
 					error={errors.description}
 					tabIndex={isOpened ? 0 : -1}
+					aria-label='Текст отзыва'
+					aria-invalid={errors.description ? true : false}
 				/>
 				<div className={styles.form__sub}>
-					<Button appearance='primary' onClick={() => null} tabIndex={isOpened ? 0 : -1}>
+					<Button appearance='primary' onClick={() => clearErrors()} tabIndex={isOpened ? 0 : -1}>
 						Отправить
 					</Button>
 					<span>* Перед публикацией отзыв пройдет предварительную модерацию и проверку</span>
 				</div>
 			</div>
 			{isSuccessView ? (
-				<div className={cn(styles.message, styles.success)}>
+				<div className={cn(styles.message, styles.success)} role="alert">
 					<div className={styles.message__title}>Ваш отзыв отправлен!</div>
 					<div className={styles.message__text}>Спасибо, ваш отзыв будет опубликован после проверки</div>
-					<button className={styles.message__button} type='button' onClick={() => setIsSuccessView(false)}><IconClose /></button>
+					<button
+						className={styles.message__button}
+						type='button'
+						onClick={() => setIsSuccessView(false)}
+						aria-label="Закрыть оповещение"
+					>
+						<IconClose />
+					</button>
 				</div>
 			) : null}
 			{errorText ? (
-				<div className={cn(styles.message, styles.error)}>
+				<div className={cn(styles.message, styles.error)} role="alert">
 					<div className={styles.message__title}>отзыв не отправлен</div>
 					<div className={styles.message__text}>{errorText}<br />Что-то пошло не так, попробуйте обновить страницу</div>
-					<button className={styles.message__button} type='button' onClick={() => setErrorText('')}><IconClose /></button>
+					<button
+						className={styles.message__button}
+						type='button' onClick={() => setErrorText('')}
+						aria-label="Закрыть оповещение"
+					>
+						<IconClose />
+					</button>
 				</div>
 			) : null}
 			
