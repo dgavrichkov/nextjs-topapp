@@ -14,14 +14,18 @@ import { API } from '../../helpers/api';
 function TopPage({ firstCategory, page, products }: TopPageProps): JSX.Element {
 	return (
 		<>
-			<Head>
-				<title>{page.metaTitle}</title>
-				<meta name="description" content={page.metaDescription} />
-				<meta property="og:title" content={page.metaTitle} />
-				<meta property="og:description" content={page.metaDescription} />
-				<meta property="og:type" content="article" />
-			</Head>
-			<TopPageComponent firstCategory={firstCategory} products={products} page={page} />;
+			{page && products && (
+				<>
+					<Head>
+						<title>{page.metaTitle}</title>
+						<meta name="description" content={page.metaDescription} />
+						<meta property="og:title" content={page.metaTitle} />
+						<meta property="og:description" content={page.metaDescription} />
+						<meta property="og:type" content="article" />
+					</Head>
+					<TopPageComponent firstCategory={firstCategory} products={products} page={page} />;
+				</>
+			)}
 		</>
 	);
 }
