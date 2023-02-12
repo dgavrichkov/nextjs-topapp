@@ -28,8 +28,9 @@ export const Search = ({ className, ...restProps }: SearchProps): JSX.Element =>
 	};
 
 	return (
-		<div 
+		<form
 			className={cn(styles.search, className)}
+			role="search"
 			{...restProps}
 		>
 			<Input
@@ -47,6 +48,6 @@ export const Search = ({ className, ...restProps }: SearchProps): JSX.Element =>
 			>
 				<IconSearch />
 			</Button>
-		</div>
+		</form>
 	);
 };

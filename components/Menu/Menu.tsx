@@ -130,8 +130,8 @@ export const Menu = (): JSX.Element => {
 	};
 
 	return (
-		<div>
+		<nav role="navigation">
 			{buildFirstLevel()}
-		</div>
+		</nav>
 	);
 };

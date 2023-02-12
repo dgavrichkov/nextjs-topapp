@@ -36,6 +36,7 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
 				className={styles.content}
 				ref={bodyRef}
 				tabIndex={0}
+				role="main"
 			>
 				{children}
 				</main>
