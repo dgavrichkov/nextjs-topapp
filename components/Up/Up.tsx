@@ -31,6 +31,7 @@ export const Up = (): JSX.Element => {
 				type="button"
 				appearance='primary'
 				icon='up'
+				aria-label="Наверх"
 			/>
 		</motion.div>
 	);
