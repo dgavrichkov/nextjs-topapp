@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import { GetStaticPropsContext, GetStaticProps, GetStaticPaths } from 'next';
 import axios from 'axios';
 import { ParsedUrlQuery } from 'querystring';
@@ -9,9 +10,25 @@ import { ProductModel } from '../../interfaces/product.interface';
 import { firstLevelMenu } from '../../helpers/helpers';
 import { TopPageComponent } from '../../page-components';
 import { API } from '../../helpers/api';
+import { NotFound } from '../404';
 
 function TopPage({ firstCategory, page, products }: TopPageProps): JSX.Element {
-	return <TopPageComponent firstCategory={firstCategory} products={products} page={page} />;
+	if (!page || !products) {
+		return <NotFound />;
+	}
+
+	return (
+		<>
+			<Head>
+				<title>{page.metaTitle}</title>
+				<meta name="description" content={page.metaDescription} />
+				<meta property="og:title" content={page.metaTitle} />
+				<meta property="og:description" content={page.metaDescription} />
+				<meta property="og:type" content="article" />
+			</Head>
+			<TopPageComponent firstCategory={firstCategory} products={products} page={page} />
+		</>
+	);
 }
 
 export default withLayout(TopPage);

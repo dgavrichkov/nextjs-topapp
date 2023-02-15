@@ -25,11 +25,13 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
 			<a
 				onFocus={() => setIsSkipLinkDisplayed(true)}
 				onKeyDown={skipContentAction}
-				tabIndex={1}
+				tabIndex={0}
 				className={cn(styles.skipLink, {
 					[styles.skipLink__displayed]: isSkipLinkDisplayed,
 				})}
-			>Сразу к контенту</a>
+			>
+				Сразу к контенту
+			</a>
 			<Header className={styles.header} />
 			<Sidebar className={styles.sidebar} />
 			<main
@@ -39,7 +41,7 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
 				role="main"
 			>
 				{children}
-				</main>
+			</main>
 			<Footer className={styles.footer} />
 			<Up />
 		</div>
